@@ -53,9 +53,9 @@
     <Compile Include="ServerTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\shadowsocks-csharp\shadowsocks-csharp4.0.csproj">
+    <ProjectReference Include="..\shadowsocks-csharp\shadowsocks-csharp.csproj">
       <Project>{0f2a0c8a-6c06-485b-aa13-aeec19ca9637}</Project>
-      <Name>shadowsocks-csharp4.0</Name>
+      <Name>shadowsocks-csharp</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
