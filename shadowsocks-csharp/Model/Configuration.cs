@@ -387,7 +387,7 @@ namespace Shadowsocks.Model
         public Configuration()
         {
             index = 0;
-            localPort = 1080;
+            localPort = 8080;
 
             reconnectTimes = 2;
             keepVisitTime = 180;
@@ -397,7 +397,7 @@ namespace Shadowsocks.Model
 
             balanceAlgorithm = "LowException";
             random = true;
-            sysProxyMode = (int)ProxyMode.Global;
+            sysProxyMode = (int)ProxyMode.NoModify;
             proxyRuleMode = (int)ProxyRuleMode.BypassLanAndChina;
 
             nodeFeedAutoUpdate = true;
