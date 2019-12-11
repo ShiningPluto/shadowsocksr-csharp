@@ -125,17 +125,17 @@ namespace Shadowsocks.View
         {
             try
             {
-                return new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                return new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             }
             catch
             {
                 try
                 {
-                    return new System.Drawing.Font("新宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    return new System.Drawing.Font("新宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 }
                 catch
                 {
-                    return new System.Drawing.Font(System.Drawing.FontFamily.GenericMonospace, 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    return new System.Drawing.Font(System.Drawing.FontFamily.GenericMonospace, 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 }
             }
         }
@@ -182,7 +182,6 @@ namespace Shadowsocks.View
             ServerGroupBox.Text = I18N.GetString("Server");
 
             btnOK.Text = I18N.GetString("OK");
-            btnCancel.Text = I18N.GetString("Cancel");
             llbUpdate.MaximumSize = new Size(lstServers.Width, lstServers.Height);
             llbUpdate.Text = String.Format(I18N.GetString("New version {0} {1} available"), UpdateChecker.Name, updateChecker.LatestVersionNumber);
         }
@@ -634,65 +633,65 @@ namespace Shadowsocks.View
 
         private void DownButton_Click(object sender, EventArgs e)
         {
-            _oldSelectedIndex = lstServers.SelectedIndex;
-            int index = _oldSelectedIndex;
-            SaveOldSelectedServer();
-            var items = lstServers.SelectedIndices;
-            if (items.Count == 1)
-            {
-                if (_oldSelectedIndex >= 0 && _oldSelectedIndex < _modifiedConfiguration.configs.Count - 1)
-                {
-                    _modifiedConfiguration.configs.Reverse(index, 2);
-                    lstServers.ClearSelected();
-                    lstServers.SelectedIndex = _oldSelectedIndex = index + 1;
-                    LoadConfiguration(_modifiedConfiguration);
-                    lstServers.ClearSelected();
-                    lstServers.SelectedIndex = _oldSelectedIndex = index + 1;
-                    LoadSelectedServer();
-                }
-            }
-            else if (0 == items.Count)
-            {
-                // Handle when server list is empty.
-                _oldSelectedIndex = -1;
-                lstServers.ClearSelected();
-                LoadSelectedServer();
-            }
-            else
-            {
-                List<int> rev_items = new List<int>();
-                int max_index = lstServers.Items.Count - 1;
-                foreach (int item in items)
-                {
-                    if (item == max_index)
-                        return;
-                    rev_items.Insert(0, item);
-                }
-                foreach (int item in rev_items)
-                {
-                    _modifiedConfiguration.configs.Reverse(item, 2);
-                }
-                _allowSave = false;
-                _ignoreLoad = true;
+			_oldSelectedIndex = lstServers.SelectedIndex;
+			int index = _oldSelectedIndex;
+			SaveOldSelectedServer();
+			var items = lstServers.SelectedIndices;
+			if (items.Count == 1)
+			{
+				if (_oldSelectedIndex >= 0 && _oldSelectedIndex < _modifiedConfiguration.configs.Count - 1)
+				{
+					_modifiedConfiguration.configs.Reverse(index, 2);
+					lstServers.ClearSelected();
+					lstServers.SelectedIndex = _oldSelectedIndex = index + 1;
+					LoadConfiguration(_modifiedConfiguration);
+					lstServers.ClearSelected();
+					lstServers.SelectedIndex = _oldSelectedIndex = index + 1;
+					LoadSelectedServer();
+				}
+			}
+			else if (0 == items.Count)
+			{
+				// Handle when server list is empty.
+				_oldSelectedIndex = -1;
+				lstServers.ClearSelected();
+				LoadSelectedServer();
+			}
+			else
+			{
+				List<int> rev_items = new List<int>();
+				int max_index = lstServers.Items.Count - 1;
+				foreach (int item in items)
+				{
+					if (item == max_index)
+						return;
+					rev_items.Insert(0, item);
+				}
+				foreach (int item in rev_items)
+				{
+					_modifiedConfiguration.configs.Reverse(item, 2);
+				}
+				_allowSave = false;
+				_ignoreLoad = true;
 
-                lstServers.SelectedIndex = _oldSelectedIndex = index + 1;
+				lstServers.SelectedIndex = _oldSelectedIndex = index + 1;
 
-                LoadConfiguration(_modifiedConfiguration);
-                lstServers.ClearSelected();
-                foreach (int item in rev_items)
-                {
-                    if (item != index)
-                        lstServers.SelectedIndex = _oldSelectedIndex = item + 1;
-                }
+				LoadConfiguration(_modifiedConfiguration);
+				lstServers.ClearSelected();
+				foreach (int item in rev_items)
+				{
+					if (item != index)
+						lstServers.SelectedIndex = _oldSelectedIndex = item + 1;
+				}
 
-                lstServers.SelectedIndex = _oldSelectedIndex = index + 1;
+				lstServers.SelectedIndex = _oldSelectedIndex = index + 1;
 
-                _ignoreLoad = false;
-                _allowSave = true;
-                LoadSelectedServer();
-            }
-            UpdateServersListBoxTopIndex(2);
-        }
+				_ignoreLoad = false;
+				_allowSave = true;
+				LoadSelectedServer();
+			}
+			UpdateServersListBoxTopIndex(2);
+		}
 
         private void TextBox_Enter(object sender, EventArgs e)
         {
@@ -811,6 +810,6 @@ namespace Shadowsocks.View
             {
                 txtIP.UseSystemPasswordChar = true;
             }
-        }
-    }
+		}
+	}
 }
